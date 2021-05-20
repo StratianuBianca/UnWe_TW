@@ -9,6 +9,7 @@ import edu.tw.services.AgeService;
 
 import javax.persistence.EntityManager;
 import javax.ws.rs.core.Response;
+import java.util.Arrays;
 import java.util.List;
 
 public class Main {
@@ -27,6 +28,6 @@ public class Main {
      //  System.out.println(ages);
     //    entityManager.close();
    //      return url;
-        System.out.println(args);
+        System.out.println(Arrays.toString(args));
     }
 }
