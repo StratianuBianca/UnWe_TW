@@ -9,12 +9,12 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/api/v1/age")
-@Consumes(MediaType.APPLICATION_JSON)
+//@Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class AgeController {
-    AgeService service;
+    AgeService service=new AgeService();
 
-    @GET
+   @GET
     public List<Age> getAll() {
         return service.getAll();
     }
