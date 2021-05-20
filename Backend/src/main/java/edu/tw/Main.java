@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 public class Main {
-    public Response parseURL (String url){
+    public Response parseURL (){
 
         AgeController ageController=new AgeController();
     //    List<Age> ageList=ageController.getAll();
