@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 public class Main {
-    public Response parseURL (){
+    public String parseURL (String url){
 
         AgeController ageController=new AgeController();
     //    List<Age> ageList=ageController.getAll();
@@ -26,6 +26,6 @@ public class Main {
         List<Age> ages=ageController.getAll();
      //  System.out.println(ages);
     //    entityManager.close();
-         return Response.ok().build();
+         return url;
     }
 }
