@@ -1,7 +1,7 @@
 <?php
 
 require_once 'principal/proiect.html';
-$JAVA_HOME = "\jre11.0.11";
+$JAVA_HOME = "\jdk-11.0.11";
 $PATH = "$JAVA_HOME/bin:".getenv('PATH');
 putenv("JAVA_HOME=$JAVA_HOME");
 putenv("PATH=$PATH");
