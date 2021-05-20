@@ -12,7 +12,7 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class EducationController {
-    EducationService service;
+    EducationService service=new EducationService();
 
 
     @GET
