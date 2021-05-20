@@ -11,31 +11,21 @@ import java.util.List;
 public class AgeController {
     AgeService service=new AgeService();
 
-  // @GET
     public List<Age> getAll() {
         return service.getAll();
     }
-
-    @GET
-    @Path("/getByMonth/{month}")
-    public List<Age> getByMonth(@PathParam("month") int month) {
+    public List<Age> getByMonth(int month) {
         return service.getByMonth(month);
     }
 
-    @GET
-    @Path("/getByCounty/{county}")
-    public List<Age> getByCounty(@PathParam("county") String county) {
+    public List<Age> getByCounty( String county) {
         return service.getByCounty(county);
     }
 
-    @GET
-    @Path("/{month}/{county}")
-    public List<Age> getByMonthAndCounty(@PathParam("month") int month, @PathParam("county") String county) {
+    public List<Age> getByMonthAndCounty( int month,  String county) {
         return service.getByMonthAndCounty(month, county);
     }
 
-    @POST
-    @Path("/create")
     public Response createEducation(Age age) {
         if (service.saveAge(age)) {
             return Response.ok().build();
@@ -43,8 +33,6 @@ public class AgeController {
         return Response.noContent().build();
     }
 
-    @PUT
-    @Path("/update")
     public Response updateAge(Age age) {
         if (service.updateAge(age)) {
             return Response.ok().build();
@@ -52,9 +40,7 @@ public class AgeController {
         return Response.noContent().build();
     }
 
-    @DELETE
-    @Path("/delete/{month}/{county}")
-    public Response deleteEducation(@PathParam("month") int month, @PathParam("county") String county) {
+    public Response deleteEducation( int month,  String county) {
         if (service.deleteAge(month, county)) {
             return Response.ok().build();
         }
