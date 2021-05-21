@@ -1,0 +1,147 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: strat
+  Date: 5/20/2021
+  Time: 11:39 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/criterialView.css">
+    <link rel="stylesheet" href="../css/header&footer.css">
+
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js></script>
+    <title>Criterial View</title>
+</head>
+<body class="entire-page">
+<header>
+    <div class="headerNormalView">
+        <a href="../html/proiect.jsp" class="classForLogo">
+            <img alt="Logo" src="../resources/logo.png" id="imgLogo">
+            <p class="text_hf" id="headerTitle"> Date șomaj România</p>
+        </a>
+        <div id="space"></div>
+        <div class="headerBtn">
+            <a href="../html/viewPage.jsp" class="text_hf header-Btn" id="viewButton">Vizualizare</a>
+            <a href="../html/criterialView.jsp" class="text_hf header-Btn" id="compareButton">Comparare</a>
+            <a href="../html/despre.jsp" class="text_hf header-Btn" id="aboutButton">Despre</a>
+        </div>
+        <div class="phone_header_menu">
+            <nav class="phone_meniu" id="phone__menu">
+                <p class="menu_title" id="menu_title">Meniu</p>
+                <div class="menuBtn">
+                    <a href="../html/viewPage.jsp" class="header-Btn text_hf text_menu"
+                       id="viewMenu">Vizualizare</a>
+                    <a href="./criterialView.jsp" class="header-Btn text_hf text_menu" id="compareMenu">Comparare</a>
+                    <a href="../html/despre.jsp" class="header-Btn text_hf text_menu" id="aboutMenu">Despre</a>
+                </div>
+            </nav>
+            <button type="button" class="header-Btn" id="phone_meniu_btn">Meniu</button>
+        </div>
+    </div>
+</header>
+
+<main class="criterial-specific">
+    <div class="chart">
+        <div class="chart__format" id="chartView">
+            <p class="text" id="data-repr">Alegeti formatul pentru reprezentarea datelor:</p>
+            <div class="chart_Btn">
+                <button type="submit" class="chart__format__btn text" id="LineChartBtn">Line-chart</button>
+                <button type="submit" class="chart__format__btn text" id="BarChartBtn">Bar-chart</button>
+                <button type="submit" class="chart__format__btn text" id="PieChartBtn">Pie-chart</button>
+                <button type="submit" class="chart__format__btn text" id="RadarChartBtn">Radar-chart</button>
+
+            </div>
+        </div>
+        <div class="chart_canva">
+            <canvas width="650" height="480" id="statistics_chart"></canvas>
+            <p class="text" id="chart_canva__text">Alegeți un mod de afișare</p>
+        </div>
+        <div class="chart__format">
+            <p class="text" id="download">Format descărcare:</p>
+            <div class="chart_Btn">
+                <button type="submit" class="chart__format__btn text" id="CSVbtn">CSV ⇣</button>
+                <button type="submit" class="chart__format__btn text" id="SVGbtn">SVG ⇣</button>
+                <button type="submit" class="chart__format__btn text" id="PDFbtn">PDF ⇣</button>
+            </div>
+        </div>
+    </div>
+    <form class="criteria" method="get" action="${pageContext.request.contextPath}/criteria">
+        <h2 class="text" id="criteria-title">Criterii pentru compararea datelor</h2>
+        <div class="criteria__period">
+            <p class="text criteria__text" id="criterion0">Perioada pentru comparare</p>
+            <div class="criteria__arrow">ffdf
+                <select class="drop-list" id="drop-perioada">
+                    <option class="text text_option" value="lastMonth" id="lastMonth">Ultima luna</option>
+                    <option class="text text_option" value="2Months" id="2Months">Ultimele 2 luni</option>
+                    <option class="text text_option" value="6months" id="6months">Ultimele 6 luni</option>
+                    <option class="text text_option" value="oneYear" id="oneYear">Ultimul an</option>
+                </select>
+                <span class="arrow"></span>
+            </div>
+        </div>
+        <div class="criteria__first">
+            <p class="text criteria__text" id="criterionOne">Criteriu principal</p>
+            <div class="criteria__arrow">
+                <select class="drop-list" id="=criterion1">
+                    <option class="text text_option" value="gen" id="gender">Gen</option>
+                    <option class="text text_option" value="mediu" id="environment">Mediu</option>
+                    <option class="text text_option" value="studii" id="studies">Studii</option>
+                    <option class="text text_option" value="categorieVarsta" id="age">Categorii de vârstă</option>
+                </select>
+                <span class="arrow"></span>
+            </div>
+        </div>
+        <div class="criteria__second">
+            <p class="text criteria__text" id="criterion2">Județ</p>
+            <div class="criteria__arrow">
+                <select class="drop-list" id="drop-county" multiple size="2"></select>
+
+            </div>
+        </div>
+        <div id="criteria__line"></div>
+        <div class="criteria__add" id="criteria__add_group">
+            <button type="button" class="criteria_form_btn" id="criteria__add__btn">+</button>
+            <p class="text" id="newCriteria">Adauga un criteriu nou</p>
+        </div>
+
+        <button type="submit" class="text criteria_form_btn" id="criteria_create">Prezintă statistici</button>
+    </form>
+    <div class="criteria_limit" id="criteria-limit">
+        <p class="text criteria_limit_text" id="criteria-limit-text"> Pot fi alese maxim 3 criterii secundare </p>
+    </div>
+    <div class="criteria-limit_grey-bkg" id="grey-bkg"></div>
+</main>
+
+
+<footer>
+    <section class="footerElem">
+        <div class="resource text_hf"> Resurse:</div>
+        <a href=https://data.gov.ro class="text_hf"> DATA.GOV.RO</a>
+    </section>
+    <div class="aboutFtr footerElem">
+        <p class="text_hf" id="about"> Despre </p>
+        <a href="../html/despre.jsp" class=" text_hf" id="aboutWe"> Date somaj Romania </a>
+    </div>
+    <section class=" footerElem languageChange">
+        <div class="lang text_hf">Limba:</div>
+        <div class="langBtn" id="langBtn">
+            <button type="button" lang="ro" class="languageButton text_hf">RO</button>
+            <button type="button" lang="en" class="languageButton text_hf">EN</button>
+        </div>
+    </section>
+    <div class="footer2">
+        <h6 class="text_hf">Lazar Catalina</h6>
+        <h6 class="text_hf">Stratianu Bianca</h6>
+    </div>
+</footer>
+</body>
+<script src="../js/header&footer.js"></script>
+<script src="../js/criterialView.js"></script>
+
+</html>
